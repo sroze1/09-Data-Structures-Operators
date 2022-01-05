@@ -57,14 +57,12 @@ restaurant.orderDelivery({
   starterIndex: 1,
 });
 
-
 // Real world example
 // const ingredients = [
 //   prompt("Let's make pasta! Ingredient 1?"),
 //   prompt('Ingredient 2?'),
 //   prompt('Ingredient 3?'),
 // ];
-
 
 // console.log(ingredients);
 // // Instead of writing this
@@ -73,26 +71,16 @@ restaurant.orderDelivery({
 // // It's easier writing this:
 // restaurant.orderPasta(...ingredients);
 
-
-
-
 // Objects
-const newRestaurant = {foundedin: 1997, ...restaurant, founder: 'Guiseppe'}
-console.log(newRestaurant);
+// const newRestaurant = { foundedin: 1997, ...restaurant, founder: 'Guiseppe' };
+// console.log(newRestaurant);
 
-const newRestaurant2 = {}
+// const newRestaurant2 = {};
 
-
-const restaurantCopy = {...restaurant};
-restaurantCopy.name = 'Ristorante Roma';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
-
-
-
-
-
-
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Ristorante Roma';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
 
 // Curly braces are used, as this is what's used to create objects
 // const { name, openingHours, categories } = restaurant;
@@ -171,3 +159,44 @@ const letters = [...str, ' ', 'S.'];
 // We can't use it to build a string on the other hand,
 // console.log(`${...str} Scmedtmann`);
 // We can only use it in places that expect multiple values separated by commas
+
+// REST pattern looks exactly like the spread operator, but does the opposite.
+// We use a spread operator to build arrays and to also to pass arguments into a functio
+// SPREAD, because on the rigfht side of =
+const arr = [1, 2, ...[3, 4]];
+
+
+
+
+
+
+
+// 1 ) Destructuring
+// REST, because on the left side of the equal sign.
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+// Just like before, the REST pattern takes the remaining
+// elements of tha array and puts them into a new array
+// In other words it collects the
+// REST packs into an array, whereas the Spread unpacks the array.
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+// It's also good to note that the REST syntax did not collecta ny of the missed elements
+// Rather it just solves any of the after the final variable.
+// For that reason the REST must always be at the end as otherwise how will the
+// JavaScript know where to finish
+
+// It also works the same in the object
+// Objects
+
+// We only want to collect saturdays and the rest go into weekdays
+const {sat, ...weekdays} = restaurant.openingHours;
+console.log(weekdays);
+
+
+// 2 Functions
