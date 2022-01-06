@@ -36,12 +36,17 @@ const restaurant = {
     time = '20:00',
     address,
   }) {
-    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} 
-    will be delivered to ${address} at ${time}`);
+    // console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]}
+    // will be delivered to ${address} at ${time}`);
   },
 
   orderPasta: function (ing1, ing2, ing3) {
-    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+    // console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
   },
 };
 
@@ -160,43 +165,62 @@ const letters = [...str, ' ', 'S.'];
 // console.log(`${...str} Scmedtmann`);
 // We can only use it in places that expect multiple values separated by commas
 
+// 1) Destructuring
 // REST pattern looks exactly like the spread operator, but does the opposite.
 // We use a spread operator to build arrays and to also to pass arguments into a functio
 // SPREAD, because on the rigfht side of =
+
+// SPREAD, because on RIGHT side of =
 const arr = [1, 2, ...[3, 4]];
 
-
-
-
-
-
-
-// 1 ) Destructuring
-// REST, because on the left side of the equal sign.
+// REST, because on LEFT side of =
+// REST collects elements that are unused in the destrucuring assignment
 const [a, b, ...others] = [1, 2, 3, 4, 5];
 console.log(a, b, others);
 
-// Just like before, the REST pattern takes the remaining
-// elements of tha array and puts them into a new array
-// In other words it collects the
-// REST packs into an array, whereas the Spread unpacks the array.
+// The REST element only collects the remaining elements
+// It does not collect the skipped elements,
+// And as it only collects remaining elements, it must be the last element
 const [pizza, , risotto, ...otherFood] = [
   ...restaurant.mainMenu,
   ...restaurant.starterMenu,
 ];
+
 console.log(pizza, risotto, otherFood);
 
-// It's also good to note that the REST syntax did not collecta ny of the missed elements
-// Rather it just solves any of the after the final variable.
-// For that reason the REST must always be at the end as otherwise how will the
-// JavaScript know where to finish
-
-// It also works the same in the object
 // Objects
-
-// We only want to collect saturdays and the rest go into weekdays
-const {sat, ...weekdays} = restaurant.openingHours;
+const { sat, ...weekdays } = restaurant.openingHours;
 console.log(weekdays);
 
+// 2) Functions
+// The second use case for spread operator was to pass in multiple arguments
+// into a function all at the same time
+// In the same way, we can pack using REST -- to do the opposite.
 
-// 2 Functions
+// In this case this is the REST parameters
+const add = function (...numbers) {
+  let sum = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1, 4);
+
+const x = [23, 5, 7];
+
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms');
+
+// HOW TO KNOW WHEN AND WHERE TO USE REST?
+// SPREAD is used where we would usually write values separated by commas
+// On the other hand
+// REST pattern is used where we would otherwise use variable names separated by commas
+// And not values separated by commas
