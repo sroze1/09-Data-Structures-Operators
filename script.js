@@ -186,11 +186,11 @@ const [pizza, , risotto, ...otherFood] = [
   ...restaurant.starterMenu,
 ];
 
-console.log(pizza, risotto, otherFood);
+// console.log(pizza, risotto, otherFood);
 
 // Objects
 const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// console.log(weekdays);
 
 // 2) Functions
 // The second use case for spread operator was to pass in multiple arguments
@@ -205,7 +205,7 @@ const add = function (...numbers) {
     sum += numbers[i];
   }
 
-  console.log(sum);
+  // console.log(sum);
 };
 
 add(2, 3);
@@ -216,11 +216,96 @@ const x = [23, 5, 7];
 
 add(...x);
 
-restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
-restaurant.orderPizza('mushrooms');
+// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+// restaurant.orderPizza('mushrooms');
 
 // HOW TO KNOW WHEN AND WHERE TO USE REST?
 // SPREAD is used where we would usually write values separated by commas
 // On the other hand
 // REST pattern is used where we would otherwise use variable names separated by commas
 // And not values separated by commas
+
+// SHORT CIRCUITING && AND ||
+
+// 3 PROPERTIES OF LOGICAL OPERATORS
+// Can use ANY data type, return ANY data type, short-circuiting
+
+console.log('------OR-------');
+// Short circuiting means if the first value is a truthy value, It will immediately return the first value
+// 3 is a truthy value as seen below
+// JS won't even look at the string
+console.log(3 || 'Jonas');
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null); // Here, the first value is a falsy so we move to the second value,
+// the second is also a falsy but there is no short circuiting , so null is returned
+
+// The result of this short circuit is 'Hello' because the first Truthy value is returned
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+// SHORT CIRCUIT USE CASE EXAMPLE
+// Below we are using short ternary operator.
+// In this case we don't know if it exists or not
+// However we want to define a default value to the guests1 variable we created
+
+// If the restaurant.numGuests exists, set guests1 to this value.
+//If the restaurant.numGuests doesn't
+// to create a new default value '10'
+
+// If however we do set the property to 23, then guests1 will = 23.
+// restaurant.numGuests = 23;
+
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+// This is a much easier method to set the values of things
+// Than having to use the ternary operator
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+// When the number of guests is 0 for restaurant.numGuests, it will NOT work
+// Because 0 is a falsey value, it will set the default value to 10,
+// even though the number of guests we want and set is to 0.
+
+console.log('------AND-------');
+// The && Operator works in the opposite way
+// It immediately returns the first falsy value, without further evaluating anything else
+
+console.log(0 && 'Jonas');
+
+// In the same way as OR value, this will print Jonas, as when it's true it will continue
+// And the last truthy value will be returned
+console.log(7 && 'Jonas');
+
+// This returns null, and the rest of the evaluation is short-circuited
+console.log('Hello' && 23 && null && 'jonas');
+
+// This makes sense, because with the && operator, something is only true if BOTH
+// values are true, and therefore if one is false, it doesn't even match the condition
+// for the && operator and so it doesn't continue
+
+// Practical example
+// Many times we can avoid an if statement if all we want to do is check if a certain..
+// ..property or value exists.
+
+if(restaurant.orderPizza) { 
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+// This works, because if the first part is true, then the second part will be 
+// evaluated as it's the final truthy in the statement
+
+// Also we can call anything after the second operand.. we can even call a function.
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+
+// Not all statements should be swapped for && and || Short circuits, as it will make 
+// Your code much harder to read
+
+
+// The OR returns the first truthy value, or the last one if all are falsy
+// The AND returns the first falsy value, or the last one if all are truthy
+
+// USE CASES:
+// We can use the OR operator to set default values,
+// We can use the AND operator to execute code in the second operand if the first one is true
