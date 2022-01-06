@@ -309,3 +309,20 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 // USE CASES:
 // We can use the OR operator to set default values,
 // We can use the AND operator to execute code in the second operand if the first one is true
+
+
+
+restaurant.numGuests = 0;
+const guests3 = restaurant.numGuests || 10;
+console.log(guests3);
+
+// Nullish: null and undefined (---NOT 0 or '' ---);
+// With the syntax below only the nullish values would short circuit the evaluation
+// Only then the second value would be returned. 
+// So as the numGuests is actually = to 0, we want to make sure it is 0 and a 
+// default isn't set of 10
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+
+
