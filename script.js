@@ -312,7 +312,7 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
 
 
-restaurant.numGuests = 0;
+restaurant.numGuests = 20;
 const guests3 = restaurant.numGuests || 10;
 console.log(guests3);
 
@@ -326,3 +326,43 @@ console.log(guestCorrect);
 
 
 
+// LOGICAL OPERATORS
+
+// OR assignment operator
+const rest1 = {
+  name: 'Capri',
+  numGuests: 0,
+};
+
+const rest2 = { 
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+}
+
+// OR operator
+rest1.numGuests = rest1.numGuests || 10;
+rest2.numGuests = rest2.numGuests || 10;
+// Can be shortened: 
+rest1.numGuests ||=10;
+rest2.numGuests ||=10;
+
+// If falsy, default numGuests is set = to 10;
+// If we set the value of numGuests to 0, the rest1 numGuests will = 10 by default
+// Although this isn't what we want.. so for this we also have the logical nullish 
+// assignment operator
+
+// Nullish assignment operator
+// Will assign default if the value is nullish (null or undefined)
+rest1.numGuests ??=10;
+rest2.numGuests ??=10;
+
+// Let's say we want to anonymise the restaurant owner names
+// We can do this using the and operator
+// If there is a rest2.owner, then set it = to <ANONYMOUS>
+// If you have to assign a value to a variable that is already defined, you can use 
+// truthy
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+
+console.log(rest1);
+console.log(rest2);
