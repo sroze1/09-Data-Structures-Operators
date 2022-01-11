@@ -81,7 +81,6 @@ printGoals(`Yes`, 'My', 'G');
 
 //7. Team with lower odd is more likely to win.
 // Print to the console which team is more likely to win, without using if/else or ternary
-
 // The reason this works is because using the AND operator, if the first statement is true
 // The the code after is executed. This is why it works. See below after reading,
 // It will make sense
