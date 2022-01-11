@@ -288,20 +288,18 @@ console.log('Hello' && 23 && null && 'jonas');
 // Many times we can avoid an if statement if all we want to do is check if a certain..
 // ..property or value exists.
 
-if(restaurant.orderPizza) { 
+if (restaurant.orderPizza) {
   restaurant.orderPizza('mushrooms', 'spinach');
 }
 
-// This works, because if the first part is true, then the second part will be 
+// This works, because if the first part is true, then the second part will be
 // evaluated as it's the final truthy in the statement
 
 // Also we can call anything after the second operand.. we can even call a function.
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
-
-// Not all statements should be swapped for && and || Short circuits, as it will make 
+// Not all statements should be swapped for && and || Short circuits, as it will make
 // Your code much harder to read
-
 
 // The OR returns the first truthy value, or the last one if all are falsy
 // The AND returns the first falsy value, or the last one if all are truthy
@@ -310,21 +308,17 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 // We can use the OR operator to set default values,
 // We can use the AND operator to execute code in the second operand if the first one is true
 
-
-
 restaurant.numGuests = 20;
 const guests3 = restaurant.numGuests || 10;
 console.log(guests3);
 
 // Nullish: null and undefined (---NOT 0 or '' ---);
 // With the syntax below only the nullish values would short circuit the evaluation
-// Only then the second value would be returned. 
-// So as the numGuests is actually = to 0, we want to make sure it is 0 and a 
+// Only then the second value would be returned.
+// So as the numGuests is actually = to 0, we want to make sure it is 0 and a
 // default isn't set of 10
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
-
-
 
 // LOGICAL OPERATORS
 
@@ -334,36 +328,87 @@ const rest1 = {
   numGuests: 0,
 };
 
-const rest2 = { 
+const rest2 = {
   name: 'La Piazza',
   owner: 'Giovanni Rossi',
-}
+};
 
 // OR operator
 rest1.numGuests = rest1.numGuests || 10;
 rest2.numGuests = rest2.numGuests || 10;
-// Can be shortened: 
-rest1.numGuests ||=10;
-rest2.numGuests ||=10;
+// Can be shortened:
+rest1.numGuests ||= 10;
+rest2.numGuests ||= 10;
 
 // If falsy, default numGuests is set = to 10;
 // If we set the value of numGuests to 0, the rest1 numGuests will = 10 by default
-// Although this isn't what we want.. so for this we also have the logical nullish 
+// Although this isn't what we want.. so for this we also have the logical nullish
 // assignment operator
 
 // Nullish assignment operator
 // Will assign default if the value is nullish (null or undefined)
-rest1.numGuests ??=10;
-rest2.numGuests ??=10;
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
 
 // Let's say we want to anonymise the restaurant owner names
 // We can do this using the and operator
 // If there is a rest2.owner, then set it = to <ANONYMOUS>
-// If you have to assign a value to a variable that is already defined, you can use 
+// If you have to assign a value to a variable that is already defined, you can use
 // truthy
 rest1.owner &&= '<ANONYMOUS>';
 rest2.owner &&= '<ANONYMOUS>';
 
 console.log(rest1);
 console.log(rest2);
+
+console.log('---------------- New Code ------------------');
+
+// For of loop prevents the setting of the counter, the condition of the coutner, and the
+// increments/decrements.
+// This is quite long, and therefore we have the for of loop
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// This for of loop, will automatically loop over the entire array
+// and in each iteration it will give us access to the current array element
+// which we can specifiy here i.e item
+
+// Therefore if you log the item, it will simply log all elements of the array
+// This allows us to loop without worrying about all of the conditonal statements
+// Like the counter etc
+// We can also use the continue and the break keywords, which is important
+// Because we will learn other ways of looping arrays
+for (const item of menu) console.log(item);
+
+
+// ---------------------------------------------------------------------------------
+// When we need the index of the 'item' we do the following below
+// We now need to call the entries method on the array
+// Each of the item is then an array
+for (const item of menu.entries()) {
+  console.log(item);
+}
+// entries basically is an array iterator, which creates an array for each index,
+// and in the array it holds the index number of the element.
+
+// Using entries, we can change the way the data is displayed
+// What we have done below is added 1 to the index which is shown using 'entries'
+// Because the array has 2 values in it (the index + the item)
+// the first part of the code below is adding 1 to the array index so it starts from 1
+// The second part is listing the second item of the array in the array iterable
+// This way it loops through the entire menu array by adding +1 to the index,
+// and then printing the second element in the array which is the food
+for (const item of menu.entries()) {
+  console.log(`${item[0] + 1}: ${item[1]}`);
+  console.log();
+}
+
+
+// We don't however have to use the method above, we can instead destructure the
+// menu.entries array and manipulate the 2 elements it contains in it's array
+// To do this, we can simply destructure by:
+// Creating two variables 
+for (const [items, elements] of menu.entries()) {
+ console.log(`${items + 1} , ${elements}`);
+}
+
 
