@@ -63,6 +63,29 @@ const [...players1final] = ['Thiago', 'Coutinho', 'Perisic', ...players1];
 console.log(players1final);
 
 // 5. Based on the odds object  create 'team1' 'draw' 'team2';
-// To rename a property without having to use it's eact name in the object, we reference it then use the colon to redefine
+// To rename a property without having to use it's eact name in the object, we reference it then use the colon to redefine321§
 const { team1, x: draw, team2 } = game.odds;
 console.log(team1, draw, team2);
+
+// 6. Wrire a function printGoals
+// That receives an abritary number of names (NOT an array) and prints them each
+// to the console. along with the number of goals that were scored (number of players passed in)
+function printGoals(...players1) { 
+  console.log( `${players1} were the goal scorers. ${players1.length} goals were scored`);
+}
+
+function printGoals(...players1) { 
+  console.log( `${players1} were the goal scorers. ${players1.length} goals were scored`);
+}
+
+printGoals(`Yes`, 'My', 'G');
+printGoals('yES', 'cyz');
+
+
+//7. Team with lower odd is more likely to win. 
+// Print to the console which team is more likely to win, without using if/else or ternary
+if(team2 > team1) { 
+  console.log(team1);
+}
+
+
