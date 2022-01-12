@@ -391,7 +391,6 @@ for (const item of menu.entries()) {
 // and then printing the second element in the array which is the food
 for (const item of menu.entries()) {
   console.log(`${item[0] + 1}: ${item[1]}`);
-  console.log();
 }
 
 
@@ -402,5 +401,8 @@ for (const item of menu.entries()) {
 for (const [items, elements] of menu.entries()) {
  console.log(`${items + 1} , ${elements}`);
 }
+
+// The full 
+
 
 
