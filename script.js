@@ -368,15 +368,7 @@ console.log('---------------- New Code ------------------');
 // This is quite long, and therefore we have the for of loop
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-// This for of loop, will automatically loop over the entire array
-// and in each iteration it will give us access to the current array element
-// which we can specifiy here i.e item
 
-// Therefore if you log the item, it will simply log all elements of the array
-// This allows us to loop without worrying about all of the conditonal statements
-// Like the counter etc
-// We can also use the continue and the break keywords, which is important
-// Because we will learn other ways of looping arrays
 for (const item of menu) console.log(item);
 
 
