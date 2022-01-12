@@ -361,7 +361,6 @@ rest2.owner &&= '<ANONYMOUS>';
 console.log(rest1);
 console.log(rest2);
 
-console.log('---------------- New Code ------------------');
 
 // For of loop prevents the setting of the counter, the condition of the coutner, and the
 // increments/decrements.
@@ -402,7 +401,83 @@ for (const [items, elements] of menu.entries()) {
  console.log(`${items + 1} , ${elements}`);
 }
 
-// The full 
 
 
 
+
+console.log('---------------- New Code ------------------');
+
+// ENHANCED OBJECT LITERALS:
+// ES6 has made it easier to write object literals (i.e restaurant object)
+// If we wanted an object to be inside another object, then we originally would have 
+// To write the new object name followed by the name of the object we want to copy
+
+// In ES6, we can simply write the name of the actual object we are copying
+// See below
+
+
+const openingHours1 = {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+
+const restaurant1 = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  // If then you were to change the name of this object, you would have to change it here also
+  openingHours1,
+}
+
+
+// 2ND EHNANCEMENT, methods
+// IN es6 we no longer have to create a property and then set it equal to a 
+// function expression like we have done previously
+// We now no longer need the function expression after the name of the property:
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  }
+
+  // would change to:
+
+
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  };
+
+  // 3RD PROPERTY NAMES
+  // Next: we can compute property names instead of having to write them out manually
+  // Let's say we had an array with all the weekdays
+  
+const weekdays = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
+  const openingHours2 = {
+    // Instead of just declaring the name of a property, we can now 'calculate' it:
+    [weekdays[0]]: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    // This can literally be anything. Before we could only calculate other things
+    // Now in ES6 we can even calculate property names
+    [`day${9+9}`]: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  }
