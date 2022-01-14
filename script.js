@@ -484,8 +484,18 @@ for (const [items, elements] of menu.entries()) {
 
 
 // OPTIONAL CHAINING // 
-console.log('---------------- New Code ------------------');
-const openingHours1 = {
+
+
+
+const restaurant1 = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+
+  openingHours1 = {
     thu: {
       open: 12,
       close: 22,
@@ -499,16 +509,36 @@ const openingHours1 = {
       close: 24,
     },
   },
+};
 
-const restaurant1 = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  // If then you were to change the name of this object, you would have to change it here also
-  openingHours1,
-}
 
-console.log(restaurant.openingHours);
+console.log('---------------- New Code ------------------');
+// Let's suppose we wanted to get the opening hours of the restaurant for Monday:
+// This actually doesn't exist, pretend we don't know if it opens on monnday or not
+// This is a good scenario when the data comes from a web API for a real web service 
+// For multiple restaurants, and not all would open on Monday
+// So first we need to check if these properties exist or not, and use an if statement
+console.log(openingHours1.mon.open);
+
+// This is however a good point to mention that above code is only checking for one
+// restaurant opening Hours. We also need to check for :
+// This way we are checking for both conditions to be true, the openingHours monday exists
+// and to see if it is even open on a monday
+// then we print the opening monday hours 'open' (time)
+if(restaurant.openingHours && restaurant.openingHours.mon) 
+console.log(restaurant.openingHours.mon.open);
+
+// The above however is inefficient. Deeply nested chains to find parts of an object
+// Would be really confusing as can be viewed above
+
+// ES2020 rectified this, where if something doesn't exist then immediately undefined
+// is returned to the console log
+// The question mark makes it so that only if the property before the question mark
+// Exists, then it will display open.
+// If not then it will return undefined
+
+// Only if it 'exists' means that as long as it's not null or undefined
+// If it is undefined, it will return undefined, as opposed to showing up as an error
+console.log(restaurant.openingHours.mon?.open);
+
