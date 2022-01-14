@@ -361,15 +361,12 @@ rest2.owner &&= '<ANONYMOUS>';
 console.log(rest1);
 console.log(rest2);
 
-
 // For of loop prevents the setting of the counter, the condition of the coutner, and the
 // increments/decrements.
 // This is quite long, and therefore we have the for of loop
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-
 for (const item of menu) console.log(item);
-
 
 // ---------------------------------------------------------------------------------
 // When we need the index of the 'item' we do the following below
@@ -392,29 +389,21 @@ for (const item of menu.entries()) {
   console.log(`${item[0] + 1}: ${item[1]}`);
 }
 
-
 // We don't however have to use the method above, we can instead destructure the
 // menu.entries array and manipulate the 2 elements it contains in it's array
 // To do this, we can simply destructure by:
-// Creating two variables 
+// Creating two variables
 for (const [items, elements] of menu.entries()) {
- console.log(`${items + 1} , ${elements}`);
+  console.log(`${items + 1} , ${elements}`);
 }
-
-
-
-
-
-
 
 // ENHANCED OBJECT LITERALS:
 // ES6 has made it easier to write object literals (i.e restaurant object)
-// If we wanted an object to be inside another object, then we originally would have 
+// If we wanted an object to be inside another object, then we originally would have
 // To write the new object name followed by the name of the object we want to copy
 
 // In ES6, we can simply write the name of the actual object we are copying
 // See below
-
 
 // const openingHours1 = {
 //     thu: {
@@ -442,9 +431,8 @@ for (const [items, elements] of menu.entries()) {
 //   openingHours1,
 // }
 
-
 // 2ND EHNANCEMENT, methods
-// IN es6 we no longer have to create a property and then set it equal to a 
+// IN es6 we no longer have to create a property and then set it equal to a
 // function expression like we have done previously
 // We now no longer need the function expression after the name of the property:
 
@@ -454,7 +442,6 @@ for (const [items, elements] of menu.entries()) {
 
 //   // would change to:
 
-
 //   order(starterIndex, mainIndex) {
 //     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
 //   };
@@ -462,7 +449,7 @@ for (const [items, elements] of menu.entries()) {
 //   // 3RD PROPERTY NAMES
 //   // Next: we can compute property names instead of having to write them out manually
 //   // Let's say we had an array with all the weekdays
-  
+
 // const weekdays = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
 //   const openingHours2 = {
 //     // Instead of just declaring the name of a property, we can now 'calculate' it:
@@ -482,11 +469,7 @@ for (const [items, elements] of menu.entries()) {
 //     },
 //   }
 
-
-// OPTIONAL CHAINING // 
-
-
-
+// OPTIONAL CHAINING //
 const restaurant1 = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -494,8 +477,7 @@ const restaurant1 = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-
-  openingHours1 = {
+  openingHours1: {
     thu: {
       open: 12,
       close: 22,
@@ -511,34 +493,85 @@ const restaurant1 = {
   },
 };
 
-
-
 console.log('---------------- New Code ------------------');
+
+// OPTIONAL CHAINING
+// Applies to objects and also arrays
+
 // Let's suppose we wanted to get the opening hours of the restaurant for Monday:
 // This actually doesn't exist, pretend we don't know if it opens on monnday or not
-// This is a good scenario when the data comes from a web API for a real web service 
-// For multiple restaurants, and not all would open on Monday
+// This is a good scenario when the data comes from a web API for a real web service
+// where there are multiple restaurants, and we would not know if all open on Monday or not
 // So first we need to check if these properties exist or not, and use an if statement
-console.log(openingHours1.mon.open);
+// This returns an error - 'open' was unedfined: code below commented out
+// console.log(restaurant.openingHours1.mon.open);
 
+// So to avoid this error first we would check if openingHours.mom exists
 // This is however a good point to mention that above code is only checking for one
-// restaurant opening Hours. We also need to check for :
-// This way we are checking for both conditions to be true, the openingHours monday exists
+// restaurant opening Hours. We could however have an instance where openingHours doesn't
+// exist, as well as monday. So we can have a case to check for both
+// This way we are checking for both conditions to be true, the openingHours exists
 // and to see if it is even open on a monday
 // then we print the opening monday hours 'open' (time)
-if(restaurant.openingHours && restaurant.openingHours.mon) 
-console.log(restaurant.openingHours.mon.open);
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open);
 
 // The above however is inefficient. Deeply nested chains to find parts of an object
 // Would be really confusing as can be viewed above
 
+// WITH optional chaining
 // ES2020 rectified this, where if something doesn't exist then immediately undefined
-// is returned to the console log
+// is returned to the console log -- and this removes the error which would occur above
+
+// HOW it works
 // The question mark makes it so that only if the property before the question mark
 // Exists, then it will display open.
 // If not then it will return undefined
 
-// Only if it 'exists' means that as long as it's not null or undefined
-// If it is undefined, it will return undefined, as opposed to showing up as an error
+// Only if it 'exists' (in terms of the nullish concept we already covered) means that
+// as long as it's not null or undefined
+// If it is undefined or null, it will return undefined, as opposed to showing up as an error
 console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours);
 
+// We can also have multiple optional chainings
+// The two properties we do not know exist already -- are openingHours and Monday
+// If the openingHours is not even a property then the monday won't be read
+// This makes it easy to prevent all kinds of bugs that sometimes we might not even expect
+// It also removes the inefficieny of long if statements
+console.log(restaurant.openingHours?.mon?.open);
+
+console.log('------------------------YO');
+// Real world example
+// What we want to try and do below is loop over the array and log whether it is open or
+// close on each of the days
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// For of loop --
+// if openeningHours?.days.open (cl)
+
+for (const day of days) {
+  // if we want to use a variable name for the property name, we must use the bracket notation
+  // as day isn't actually a property, and day will hold each item in the array looped.
+  // We will use a square bracket around it
+  // So below we are checking if that day even exists
+  const open = restaurant.openingHours[day]?.open;
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+for (const day of days) {
+  // We can also use the OR operator to help us add a default value - rather than undefined
+  // See below
+  // The OR operator to remind you means that the first truthy value will be set / displayed
+  const open = restaurant.openingHours[day]?.open || `closed`;
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// The above code is still a problem however,
+// Saturday is actually opened, although because it's 0 it's recognised as a false
+// value so the default value of `closed` is set.
+// Using the nullish coalescent operator we can resolve this '??'
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? `closed`;
+  console.log(`On ${day}, we open at ${open}`);
+}
