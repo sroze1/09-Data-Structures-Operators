@@ -532,7 +532,6 @@ if (restaurant.openingHours && restaurant.openingHours.mon)
 // as long as it's not null or undefined
 // If it is undefined or null, it will return undefined, as opposed to showing up as an error
 console.log(restaurant.openingHours.mon?.open);
-console.log(restaurant.openingHours);
 
 // We can also have multiple optional chainings
 // The two properties we do not know exist already -- are openingHours and Monday
@@ -575,3 +574,27 @@ for (const day of days) {
   const open = restaurant.openingHours[day]?.open ?? `closed`;
   console.log(`On ${day}, we open at ${open}`);
 }
+
+// OPTIONAL CHAINING FOR METHODS
+console.log(`OPTIONAL CHAINING FOR METHODS`);
+// We can also check if a method exists before we call it
+console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
+
+// If it does not exist it will return back method does not exist
+console.log(restaurant.orderRisotto?.(0, 1) ?? `Method does not exist`);
+
+console.log(`OPTIONAL CHAINING FOR ARRAYS`);
+// We can use it to check if an array is empty:
+const users = [{ name: 'Jonas', email: 'hello@gmail.com' }];
+
+// Below , we are checking using the optional chaining on an array
+// If it does exist, then we print the name, if not then the default
+// Using the nullish operator - 'User array empty'
+console.log(users[0]?.name ?? 'User array empty');
+
+// without optional chaining, we would have to instead do something like this
+if (users.length > 0) console.log(users[0].name);
+else console.log('Users array does empty');
+
+// This ultimately can be used to do something if we don't receive anything fromn the left
+// hand side
