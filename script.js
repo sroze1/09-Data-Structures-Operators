@@ -470,28 +470,28 @@ for (const [items, elements] of menu.entries()) {
 //   }
 
 // OPTIONAL CHAINING //
-const restaurant1 = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+// const restaurant1 = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours1: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-};
+//   openingHours1: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+// };
 
 console.log('---------------- New Code ------------------');
 
@@ -599,12 +599,83 @@ console.log('---------------- New Code ------------------');
 // This ultimately can be used to do something if we don't receive anything fromn the left
 // hand side
 
+
+
+
 console.log('-------NEW NEW CODE-------');
 // LOOPING OBJECTS
+//Objects are bot iterables, therefore we can find a way to loop over them - using looping ojects:
 // it depends what we want to loop over, objects property names or the values, or together?
 
 // Looping over proeerty names (keys)
-// for(const day of Object.keys(openingHours1)) { 
+// for(const day of Object.keys(openingHours1)) {
 //   console.log(day);
 // }
-console.log(Object.keys(openingHours1));
+
+const restaurant1 = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  openingHours1: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+};
+
+
+// Objects aren't iterables in JS, therefore we indirectly can loop iver them using the 
+// for of loop.
+// What we do is place the keys into the array that we create on the left. 
+// The keys are placed using the Object prototype method. 
+
+// PROPERTY NAMES
+const properties = Object.keys(restaurant1.openingHours1);
+console.log(properties);
+
+// This way, as the values are wpalced into an array, we can also use this to return to the length
+let openStr = `We are open on ${properties.length} days: `;
+
+// Here is the for loop that has been mentioned 
+// The day variable that we hjave crewated practically loops through the "array"
+// and all of the "array" values are stored inside day.
+// We then coombione our string with this and return it with the days variable we create
+for(const day of Object.keys(restaurant1.openingHours1)) { 
+  openStr += `${day}, `;
+}
+
+console.log(openStr);
+
+
+//PROPERTY VALUES
+const values = Object.values(restaurant1.openingHours1);
+console.log(values);
+
+// ENTIRE OBJECT
+// Loop over the entire object
+// For this we need the entries, the keys and the values combined
+// This will turn the object into an array
+const entries = Object.entries(restaurant1.openingHours1);
+// console.log(entries);
+
+// Below what happens is that we are destructuring the code into the key, and into
+// open and close which are actually properties in an object
+// To destructure these we must use the curly braced as opposed to the normal ones
+// The entries being looped will therefore be stored into the key, and the values of the days
+// will be stored into the open and close, therefore when this is being looped it will 
+// print accordingly. 
+for (const [day, {open, close}] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+};
