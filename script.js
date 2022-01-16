@@ -506,15 +506,15 @@ console.log('---------------- New Code ------------------');
 // This returns an error - 'open' was unedfined: code below commented out
 // console.log(restaurant.openingHours1.mon.open);
 
-// So to avoid this error first we would check if openingHours.mom exists
+// So to avoid this error first we would check if openingHours.mon exists
 // This is however a good point to mention that above code is only checking for one
 // restaurant opening Hours. We could however have an instance where openingHours doesn't
 // exist, as well as monday. So we can have a case to check for both
 // This way we are checking for both conditions to be true, the openingHours exists
 // and to see if it is even open on a monday
-// then we print the opening monday hours 'open' (time)
-if (restaurant.openingHours && restaurant.openingHours.mon)
-  console.log(restaurant.openingHours.mon.open);
+// // then we print the opening monday hours 'open' (time)
+// if (restaurant.openingHours && restaurant.openingHours.mon)
+//   console.log(restaurant.openingHours.mon.open);
 
 // The above however is inefficient. Deeply nested chains to find parts of an object
 // Would be really confusing as can be viewed above
@@ -530,71 +530,81 @@ if (restaurant.openingHours && restaurant.openingHours.mon)
 
 // Only if it 'exists' (in terms of the nullish concept we already covered) means that
 // as long as it's not null or undefined
-// If it is undefined or null, it will return undefined, as opposed to showing up as an error
-console.log(restaurant.openingHours.mon?.open);
+// // If it is undefined or null, it will return undefined, as opposed to showing up as an error
+// console.log(restaurant.openingHours.mon?.open);
 
-// We can also have multiple optional chainings
-// The two properties we do not know exist already -- are openingHours and Monday
-// If the openingHours is not even a property then the monday won't be read
-// This makes it easy to prevent all kinds of bugs that sometimes we might not even expect
-// It also removes the inefficieny of long if statements
-console.log(restaurant.openingHours?.mon?.open);
+// // We can also have multiple optional chainings
+// // The two properties we do not know exist already -- are openingHours and Monday
+// // If the openingHours is not even a property then the monday won't be read
+// // This makes it easy to prevent all kinds of bugs that sometimes we might not even expect
+// // It also removes the inefficieny of long if statements
+// console.log(restaurant.openingHours?.mon?.open);
 
-console.log('------------------------YO');
-// Real world example
-// What we want to try and do below is loop over the array and log whether it is open or
-// close on each of the days
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// console.log('------------------------YO');
+// // Real world example
+// // What we want to try and do below is loop over the array and log whether it is open or
+// // close on each of the days
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 // For of loop --
 // if openeningHours?.days.open (cl)
 
-for (const day of days) {
-  // if we want to use a variable name for the property name, we must use the bracket notation
-  // as day isn't actually a property, and day will hold each item in the array looped.
-  // We will use a square bracket around it
-  // So below we are checking if that day even exists
-  const open = restaurant.openingHours[day]?.open;
-  console.log(`On ${day}, we open at ${open}`);
-}
+// for (const day of days) {
+//   // if we want to use a variable name for the property name, we must use the bracket notation
+//   // as day isn't actually a property, and day will hold each item in the array looped.
+//   // We will use a square bracket around it
+//   // So below we are checking if that day even exists
+//   const open = restaurant.openingHours[day]?.open;
+//   console.log(`On ${day}, we open at ${open}`);
+// }
 
-for (const day of days) {
-  // We can also use the OR operator to help us add a default value - rather than undefined
-  // See below
-  // The OR operator to remind you means that the first truthy value will be set / displayed
-  const open = restaurant.openingHours[day]?.open || `closed`;
-  console.log(`On ${day}, we open at ${open}`);
-}
+// for (const day of days) {
+//   // We can also use the OR operator to help us add a default value - rather than undefined
+//   // See below
+//   // The OR operator to remind you means that the first truthy value will be set / displayed
+//   const open = restaurant.openingHours[day]?.open || `closed`;
+//   console.log(`On ${day}, we open at ${open}`);
+// }
 
-// The above code is still a problem however,
-// Saturday is actually opened, although because it's 0 it's recognised as a false
-// value so the default value of `closed` is set.
-// Using the nullish coalescent operator we can resolve this '??'
-for (const day of days) {
-  const open = restaurant.openingHours[day]?.open ?? `closed`;
-  console.log(`On ${day}, we open at ${open}`);
-}
+// // The above code is still a problem however,
+// // Saturday is actually opened, although because it's 0 it's recognised as a false
+// // value so the default value of `closed` is set.
+// // Using the nullish coalescent operator we can resolve this '??'
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? `closed`;
+//   console.log(`On ${day}, we open at ${open}`);
+// }
 
-// OPTIONAL CHAINING FOR METHODS
-console.log(`OPTIONAL CHAINING FOR METHODS`);
-// We can also check if a method exists before we call it
-console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
+// // OPTIONAL CHAINING FOR METHODS
+// console.log(`OPTIONAL CHAINING FOR METHODS`);
+// // We can also check if a method exists before we call it
+// console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
 
-// If it does not exist it will return back method does not exist
-console.log(restaurant.orderRisotto?.(0, 1) ?? `Method does not exist`);
+// // If it does not exist it will return back method does not exist
+// console.log(restaurant.orderRisotto?.(0, 1) ?? `Method does not exist`);
 
-console.log(`OPTIONAL CHAINING FOR ARRAYS`);
-// We can use it to check if an array is empty:
-const users = [{ name: 'Jonas', email: 'hello@gmail.com' }];
+// console.log(`OPTIONAL CHAINING FOR ARRAYS`);
+// // We can use it to check if an array is empty:
+// const users = [{ name: 'Jonas', email: 'hello@gmail.com' }];
 
 // Below , we are checking using the optional chaining on an array
 // If it does exist, then we print the name, if not then the default
 // Using the nullish operator - 'User array empty'
-console.log(users[0]?.name ?? 'User array empty');
+// console.log(users[0]?.name ?? 'User array empty');
 
 // without optional chaining, we would have to instead do something like this
-if (users.length > 0) console.log(users[0].name);
-else console.log('Users array does empty');
+// if (users.length > 0) console.log(users[0].name);
+// else console.log('Users array does empty');
 
 // This ultimately can be used to do something if we don't receive anything fromn the left
 // hand side
+
+console.log('-------NEW NEW CODE-------');
+// LOOPING OBJECTS
+// it depends what we want to loop over, objects property names or the values, or together?
+
+// Looping over proeerty names (keys)
+// for(const day of Object.keys(openingHours1)) { 
+//   console.log(day);
+// }
+console.log(Object.keys(openingHours1));
