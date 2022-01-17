@@ -599,9 +599,6 @@ console.log('---------------- New Code ------------------');
 // This ultimately can be used to do something if we don't receive anything fromn the left
 // hand side
 
-
-
-
 console.log('-------NEW NEW CODE-------');
 // LOOPING OBJECTS
 //Objects are bot iterables, therefore we can find a way to loop over them - using looping ojects:
@@ -635,11 +632,10 @@ const restaurant1 = {
   },
 };
 
-
-// Objects aren't iterables in JS, therefore we indirectly can loop iver them using the 
+// Objects aren't iterables in JS, therefore we indirectly can loop iver them using the
 // for of loop.
-// What we do is place the keys into the array that we create on the left. 
-// The keys are placed using the Object prototype method. 
+// What we do is place the keys into the array that we create on the left.
+// The keys are placed using the Object prototype method.
 
 // PROPERTY NAMES
 const properties = Object.keys(restaurant1.openingHours1);
@@ -648,16 +644,15 @@ console.log(properties);
 // This way, as the values are wpalced into an array, we can also use this to return to the length
 let openStr = `We are open on ${properties.length} days: `;
 
-// Here is the for loop that has been mentioned 
+// Here is the for loop that has been mentioned
 // The day variable that we hjave crewated practically loops through the "array"
 // and all of the "array" values are stored inside day.
 // We then coombione our string with this and return it with the days variable we create
-for(const day of Object.keys(restaurant1.openingHours1)) { 
+for (const day of Object.keys(restaurant1.openingHours1)) {
   openStr += `${day}, `;
 }
 
 console.log(openStr);
-
 
 //PROPERTY VALUES
 const values = Object.values(restaurant1.openingHours1);
@@ -674,8 +669,113 @@ const entries = Object.entries(restaurant1.openingHours1);
 // open and close which are actually properties in an object
 // To destructure these we must use the curly braced as opposed to the normal ones
 // The entries being looped will therefore be stored into the key, and the values of the days
-// will be stored into the open and close, therefore when this is being looped it will 
-// print accordingly. 
-for (const [day, {open, close}] of entries) {
+// will be stored into the open and close, therefore when this is being looped it will
+// print accordingly.
+for (const [day, { open, close }] of entries) {
   console.log(`On ${day} we open at ${open} and close at ${close}`);
-};
+}
+
+console.log('----------- SETS -------------');
+// a collection of unique values - can never have duplicates
+
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+// All the dupliacates are removed
+// Sets are like arrays, in that there are no key value pairs, it's just a bunch of
+// values grouped together -- in this case a set
+
+// Sets are still iterable like array
+
+// Sets are however not arrays, and they behave differently - in that the order is
+// irrelevant , and the elements are unique.
+// String are also iterables
+console.log(orderSet);
+
+const tattaSet = new Set('');
+console.log(tattaSet.has);
+
+console.log(new Set('Jonas'));
+
+// Getting the size of a set
+// NOT length like arrays
+
+// This is similar to the includes for array
+console.log(orderSet.size);
+console.log(orderSet.has('Bread'));
+console.log(orderSet.has('Pizza'));
+
+// We can also add to sets. Even though we add two, only one is added to the set
+orderSet.add('Garlic Bread');
+orderSet.add('Garlic Bread');
+
+// We can also delete sets
+orderSet.delete('Risotto');
+console.log(orderSet);
+
+// How to retrieve items out of sets?
+// There are NO indexes for sets..
+// Because all values are unique, we don't need to look for a certain item
+// All we need to know is if the item is in the set or not, and we use the 'has' method
+// If your goal is to store values in order and retrieve it, we use arrays instead
+
+// Delete all the items in the set:
+// orderSet.clear();
+
+// Sets are iterables so we can loop over them
+// Iterables are things we can loop over
+for (const order of orderSet) console.log(order);
+
+// Use case for Sets,
+// In a normal case, Sets are used to remove duplicate value of arrays
+
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+
+// Let's say we are interested in knowing the unique job roles in our restaurant
+// So the above array for duplicates
+const staffSet = new Set(staff);
+console.log(staffSet);
+
+// conversion from set to array:
+// Spread operator works on all iterables, including sets
+const staffSet2 = [...new Set(staff)];
+console.log(staffSet2);
+
+// If you just wanted to know the size of an array, you don't even need to create the array
+// at all. Instead, you can do the following:
+// This will allow us to know how many unique positions there are in the array
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+
+// The same can be done with counting how many different letters there are in a string:
+console.log(new Set('SherozeM').size);
+
+function pangramChecker(sentence) {
+  sentence = prompt(
+    "Please enter sentence to check for panagram. You MUST NOT include punctuation or special characters, otherwise it will not work as i'm still a shit programmer"
+  );
+
+  // Change the sentence all to lowerCase to not allow it to count as unique item
+  sentence = sentence.toLowerCase();
+
+  // Remove all duplicates by creating a set of the sentence passed in by the user
+  sentence = new Set(sentence);
+
+  // If the size of the sentence is greater than or = to 27
+  // Alphabet length(26), + 1 for space
+  // In other words, if 26 unique letter are found, then panagram
+  // Else do 1
+  if (sentence.size >= 27) {
+    console.log('panagram');
+  } else console.log('do 1 pal');
+}
+
+pangramChecker('A quick brown fox jumps over the lazy dog');
