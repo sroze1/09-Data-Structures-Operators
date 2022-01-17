@@ -77,7 +77,6 @@ function printGoals(...players1) {
   );
 }
 
-printGoals(`Yes`, 'My', 'G');
 
 //7. Team with lower odd is more likely to win.
 // Print to the console which team is more likely to win, without using if/else or ternary
@@ -86,3 +85,63 @@ printGoals(`Yes`, 'My', 'G');
 // It will make sense
 team1 < team2 && console.log('Team 1 is more likely to win');
 team2 < team1 && console.log('Team 2 is more likely to win');
+
+
+console.log("Second Challenge");
+// 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+
+// entries method basically creates two elements, one with the index and the other one with the value for the object property targeted
+// This means that we need two elements that these values will go into:
+// goalNumber and goalScorer
+for (const [goalNumber, goalScorer] of game.scored.entries()) { 
+  console.log(`Goal ${goalNumber+1}:  ${goalScorer}`);
+}
+
+// 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+// Team 1 + draw + team 2 / 3 = average
+// Each time the loop moves forward, we want to add the value of average onto something - so by the end of it we have added all three values
+// for(let [average, total] of Object.entries(game.odds)) { 
+//  console.log(average, total);
+//  console.log(Object.values(total));
+// }
+
+let average = 0;
+for (const x of Object.values(game.odds)) { 
+  average += x;
+}
+
+console.log(average / Object.values(game.odds).length);
+
+
+// 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+      // Odd of victory Bayern Munich: 1.33
+// console.log(`Odds of victory ${game.team1}: ${game.odds.team1}`);
+
+// //       Odd of draw: 3.25
+// console.log(`Odds of draw: ${game.odds.x}`);
+
+// //       Odd of victory Borrussia Dortmund: 6.5
+// console.log(`Odds of victory ${game.team2}: ${game.odds.team2}`);
+
+// Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+// Use a loop for this
+
+for(const [teams, odds] of Object.entries(game.odds)) { 
+  const draw = teams === 'x' ? 'draw': `Odds of ${odds}`;
+  console.log(`Odds of victory ${game[teams]}: ${odds} `);
+}
+
+
+
+
+
+
+// BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+//       {
+//         Gnarby: 1,
+//         Hummels: 1,
+//         Lewandowski: 2
+//       }
+//  const scored= {...game.scored}
+//  console.log(scored);
+
