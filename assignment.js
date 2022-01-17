@@ -157,7 +157,8 @@ for(const [teams, odds] of Object.entries(game.odds)) {
 
 
 
-// BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+// BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. 
+// In this game, it will look like this:
 //       {
 //         Gnarby: 1,
 //         Hummels: 1,
@@ -166,3 +167,7 @@ for(const [teams, odds] of Object.entries(game.odds)) {
 //  const scored= {...game.scored}
 //  console.log(scored);
 
+const {scored:scorers} = game;
+for(const [key,value] of Object.entries(scorers)) {
+  console.log(key,value);
+}
