@@ -126,9 +126,30 @@ console.log(average / Object.values(game.odds).length);
 // Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
 // Use a loop for this
 
+// Below, we have used the Object entries to call the entire odds object in game
+// This creates two elements, the name and the value
+// We store these into teams and odds, which will loop over this object
+// Instead of hardcoding the string 'team 1', as it's available in the game object we can
+// use this for our advantage
+
+// What we do is allow the name element to append to the game object
+// E.g the name is 'team1' - when put into the teams variable with {game[teams]}
+// this is essentially like saying {game[teams1]}
+// This will therefore print the team which is being passed into the game object
+
+// In the instance that the 'x' is chosen, this is a draw and we require a different 
+// approach
+// To resolve this, we can create a separate variable, using a ternary operator
+// If the teams (in the loop) has the key of 'x', then = draw
+// If it's not x, it must therefore be another team, so continue with our first logic 
+// i.e {game[teams]}
+
+// finally, we can print this to the console, with the variable which is a conditional,
+// to produce the statement we need.
+
 for(const [teams, odds] of Object.entries(game.odds)) { 
-  const draw = teams === 'x' ? 'draw': `Odds of ${odds}`;
-  console.log(`Odds of victory ${game[teams]}: ${odds} `);
+  const draw = teams === 'x' ? 'draw': `Odds of victory ${game[teams]}`;
+  console.log(`Odds of ${draw}: ${odds} `);
 }
 
 
