@@ -758,24 +758,100 @@ console.log(
 // The same can be done with counting how many different letters there are in a string:
 console.log(new Set('SherozeM').size);
 
-function pangramChecker(sentence) {
-  sentence = prompt(
-    "Please enter sentence to check for panagram. You MUST NOT include punctuation or special characters, otherwise it will not work as i'm still a shit programmer"
-  );
+// function pangramChecker(sentence) {
+//   sentence = prompt(
+//     "Please enter sentence to check for panagram. You MUST NOT include punctuation or special characters, otherwise it will not work as i'm still a shit programmer"
+//   );
 
-  // Change the sentence all to lowerCase to not allow it to count as unique item
-  sentence = sentence.toLowerCase();
+//   // Change the sentence all to lowerCase to not allow it to count as unique item
+//   sentence = sentence.toLowerCase();
 
-  // Remove all duplicates by creating a set of the sentence passed in by the user
-  sentence = new Set(sentence);
+//   // Remove all duplicates by creating a set of the sentence passed in by the user
+//   sentence = new Set(sentence);
 
-  // If the size of the sentence is greater than or = to 27
-  // Alphabet length(26), + 1 for space
-  // In other words, if 26 unique letter are found, then panagram
-  // Else do 1
-  if (sentence.size >= 27) {
-    console.log('panagram');
-  } else console.log('do 1 pal');
-}
+//   // If the size of the sentence is greater than or = to 27
+//   // Alphabet length(26), + 1 for space
+//   // In other words, if 26 unique letter are found, then panagram
+//   // Else do 1
+//   if (sentence.size >= 27) {
+//     console.log('panagram');
+//   }
+// }
 
-pangramChecker('A quick brown fox jumps over the lazy dog');
+// pangramChecker('A quick brown fox jumps over the lazy dog');
+
+// MAPS
+// Maps are Data Structure used to map values to keys
+// Just like in objects, data is stored in key value pairs
+// BIG Difference between keys and map
+// In maps the keys can have any data type
+
+// Easiest way to create a map, create a new empty one first
+const rest = new Map();
+// Then to fill up the map we can use the set method
+// First the key name, then the name of the restaurant
+rest.set('name', 'Classico Italiono');
+
+// Lets say the restaurant has 2 locations, we can use any data type - in this case
+// a key with a number (Doesn't have to be a string)
+rest.set(1, 'Firenze, Italy');
+rest.set(2, 'Lisbon, Portugal');
+
+// Calling the set method not only updates the maps but it also returns it
+console.log(rest.set(2, 'Lisbon, Portugal'));
+
+// The fact that the set method returns the updates map, 
+//allows us to chain the set method like below
+rest
+  .set('categories', ['Italian', 'Pizzariea', 'Vegetarian', 'Organic'])
+  .set('open', 12)
+  .set('close', 23)
+  .set(true, 'we are open')
+  .set(false,'we are closed');
+
+// In order to the read the data from the maps we use the get method
+// The data type also matters when trying to return this
+console.log(rest.get('name')); 
+console.log(rest.get(true)); 
+
+const time = 21;
+
+console.log(rest.get(time >= rest.get('open') && time < rest.get('close')));
+
+// Although the above is clever it is not really readable so we shouldn't overuse this
+
+
+// Checking if map contains a certain key
+console.log(rest.has('categories'));
+
+// How to delete from maps
+rest.delete(2);
+console.log(rest);
+
+// We can also check the size of the maps
+console.log(rest.size);
+
+// We can use arrays as map keys
+rest.set([1,2], 'Test');
+
+// The below does not return the above, because 
+// The below aren't the same object n the heap
+// This won't work below,  because behind the scenes - these arrays aren't the same
+// as the one above
+// they arent the same in the heap
+console.log(rest.get([1,2]));
+
+// In order to make it work, we must instead create an array to read the value out
+// This array can then be passed into the rest.get feature
+// Objects can also be used as maps keys
+const arr1 = [1,2];
+rest.set(arr1,'Test');
+console.log(rest.get(arr1));
+
+// dom eleements are also just special types of objects, therefore if needed we can
+// also pass them into the maps as keys
+// The h1 key targets the heading
+// This can be seen in the console when hovering over the map key : h1
+// printed by rest 
+rest.set(document.querySelector('h1'), 'Heading');
+console.log(rest);
