@@ -147,10 +147,10 @@ console.log(average / Object.values(game.odds).length);
 // finally, we can print this to the console, with the variable which is a conditional,
 // to produce the statement we need.
 
-for(const [teams, odds] of Object.entries(game.odds)) { 
-  const draw = teams === 'x' ? 'draw': `Odds of victory ${game[teams]}`;
-  console.log(`Odds of ${draw}: ${odds} `);
-}
+// for(const [teams, odds] of Object.entries(game.odds)) { 
+//   const draw = teams === 'x' ? 'draw': `Odds of victory ${game[teams]}`;
+//   console.log(`Odds of ${draw}: ${odds} `);
+// }
 
 
 
@@ -171,3 +171,62 @@ const {scored:scorers} = game;
 for(const [key,value] of Object.entries(scorers)) {
   console.log(key,value);
 }
+
+
+// Coding challenge 3
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+
+// 1. Create an array 'events' of the different game events that happened (no duplicates)
+// Sets, events that happened were the gameEvents(key, value)
+// First we need to separate the minutes
+
+
+// const [keys, values] = [gameEvents];
+// console.log(keys, values);
+
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') {
+//     console.log(`Answer ${key}: ${value}`);
+//   }
+//
+
+// for(const [key,value] of [gameEvents]) { 
+//   console.log([...new Set(gameEvents)]);
+// }
+
+
+
+
+
+
+// console.log([...question]);
+
+// // The following can be used on the maps also
+// // If we just use it like this, they will return some weird itertor on the console
+// // So we must spread them also
+// console.log(question.entries());
+// console.log([...question.keys()]);
+// console.log(question.values());
+
+// 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+// 3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+// 4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+//       [FIRST HALF] 17: ⚽️ GOAL
+
+// GOOD LUCK 😀
+// */
+

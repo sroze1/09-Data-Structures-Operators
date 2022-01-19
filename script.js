@@ -855,3 +855,79 @@ console.log(rest.get(arr1));
 // printed by rest 
 rest.set(document.querySelector('h1'), 'Heading');
 console.log(rest);
+
+
+// POPULATE NEW MAP RATHER THAN USING SET 
+// How to populate a new map rather than using the set method
+// set method can become cumbersome especially when having a larger map
+
+// When starting a new map from scratch, the below method is preferred, as it's easier
+// However when populating new bits to the set, we then of course can use the set method
+// as opposed to going back up to the code to add.
+const question = new Map([
+['question', 'What is the best programming language in the world?'],
+[1, 'C'],
+[2, 'Java'],
+[3, 'JavaScript'],
+['correct', 3],
+[true, 'Correct'],
+[false, 'Try again!'],
+]);
+
+console.log(question);
+
+// The above structure for the array of arrays is really similar to the Object.entries
+
+
+// Converting objects to maps
+// This little trick is handy when you need a map for an existing object
+const hoursMap = new Map(Object.entries(restaurant.openingHours));
+console.log(hoursMap);
+
+
+
+// Iteration on maps
+// Maps are iterables
+
+// Best practice to use for of loops - first write what we wish to loop, then variables
+
+// With objects, as they are not iterables, we had to use the Object.entries method
+
+// With maps, as they already follow the structure of the entries (as they are arrays of arrays)
+// we can simply use the name of the map
+// This is a really useful way to destructure the 
+
+// Quiz app
+console.log(question.get('question'));
+for(const [key, value] of question) { 
+  if(typeof key === 'number') { 
+    console.log(`Answer ${key}: ${value}`);
+  }
+}
+
+// const answer = Number(prompt('Your answer'));
+// console.log(question.get(question.get('correct') === answer));
+
+// Sometimes we might need to convert map to array
+// Convert map to array
+// We can do this by converting the account
+// this
+
+
+
+console.log([...question]);
+
+// The following can be used on the maps also
+// If we just use it like this, they will return some weird itertor on the console
+// So we must spread them also
+console.log(question.entries());
+console.log([...question.keys()]);
+console.log(question.values());
+
+
+
+console.log('NEW=------------------------------ SECTION');
+// When to use maps?
+// When to use objects?
+
+
