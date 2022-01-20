@@ -239,7 +239,7 @@ for (const [key, value] of gameEvents) {
 // function sumArray(array) {
 //   lowestNum = array[0];
 
-//   for(let i = 0; i < array.length; i++) { 
+//   for(let i = 0; i < array.length; i++) {
 //     highestNum > array[i] ? highestNum: highestNum = array[i];
 //     lowestNum < array[i] ? lowestNum: lowestNum = array[i];
 //     total += array[i];
@@ -255,78 +255,104 @@ for (const [key, value] of gameEvents) {
 // ['hello', 'world', 'this', 'is', 'great']  =>  'hello world this is great'
 const newArray = ['hello', 'world', 'this', 'is', 'great'];
 
+function smash(words) {
+  let sentence = '';
+  for (let contents of words) {
+    sentence += ' ' + contents;
+  }
 
-function smash (words) { 
-  let sentence ="";
-for(let contents of words) { 
-  sentence += " " + contents;
-}
-
-return sentence.slice(1);
+  return sentence.slice(1);
 }
 
 console.log(smash(['hello', 'yes', 'g']));
 
-
 // New function g ("Join)
 // Creates a new string by concatenating all elements of the array
 // Whatever is in the brackets will separate the two elements.
-function smashed(words) { 
-  return words.join(" ");
-}
+// function smashed(words) {
+//   return words.join(" ");
+// }
 
-console.log(smashed(['tatt', 'you', 'are']));
+// console.log(smashed(['tatt', 'you', 'are']));
 
-const sheepArray = [
-  true,
-  true,
-  true,
-  false,
-  true,
-  true,
-  true,
-  true,
-  true,
-  false,
-  true,
-  false,
-  true,
-  false,
-  false,
-  true,
-  true,
-  true,
-  true,
-  true,
-  false,
-  false,
-  true,
-  true,
-];
+// const sheepArray = [
+//   true,
+//   true,
+//   true,
+//   false,
+//   true,
+//   true,
+//   true,
+//   true,
+//   true,
+//   false,
+//   true,
+//   false,
+//   true,
+//   false,
+//   false,
+//   true,
+//   true,
+//   true,
+//   true,
+//   true,
+//   false,
+//   false,
+//   true,
+//   true,
+// ];
 
-function countingSheep(sheepArray) { 
-  let total = 0;
-  for(let count of sheepArray) { 
-    if(count) {total++};
-  }
-  return total;
-}
+// function countingSheep(sheepArray) {
+//   let total = 0;
+//   for(let count of sheepArray) {
+//     if(count) {total++};
+//   }
+//   return total;
+// }
 
-console.log(countingSheep(sheepArray));
-// an even easier way of doing the above
-// This finds all the booleans, and the length of them in the array of sheeps is returned 
-function countSheeps(arrayOfSheeps) { 
-  return arrayOfSheeps.filter(Boolean).length;
-}
+// console.log(countingSheep(sheepArray));
+// // an even easier way of doing the above
+// // This finds all the booleans, and the length of them in the array of sheeps is returned
+// function countSheeps(arrayOfSheeps) {
+//   return arrayOfSheeps.filter(Boolean).length;
+// }
 
 // function smash (words) {
 //   let smashed = ([...words]);
 //    return words ? smashed : "";
 // };
 
-
 // xxsmash(['hello', 'this', 'is', 'a', 'test']);
 
+// VOWEL COUNT
+// function getCount(str) {
+//   let strArray = [...str];
+//   let vowelsCount = 0;
+
+//   for(let vowels of strArray) {
+//     vowels === 'a' ? vowelsCount++ : vowelsCount;
+//     vowels === 'e' ? vowelsCount++ : vowelsCount;
+//     vowels === 'i' ? vowelsCount++ : vowelsCount;
+//     vowels === 'o' ? vowelsCount++ : vowelsCount;
+//     vowels === 'u' ? vowelsCount++ : vowelsCount;
+// };
+// return vowelsCount;
+// }
+
+// all multiples of x (up to n times)
+// function countBy(x, n) {
+//   let newArray = [];
+
+  
+//   for (let r = x; newArray.length < n; r++) { 
+//     if(r % x === 0) newArray.push(r);
+//   }
+//   return newArray;
+// }
+
+// console.log(countBy(2, 5));
+
+// console.log(getCount('aeiouy h'));
 
 // GOOD LUCK 😀
 // */
