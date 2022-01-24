@@ -393,25 +393,48 @@ console.log(smash(['hello', 'yes', 'g']));
 // x = [...key, (value - equalSplit);
 
 // Find the index of the needle position in the array
-function findNeedle(haystack) {
-  let position = '';
-  for (let i = 0; i < haystack.length; i++) {
-    if (haystack[i] === 'needle')
-      position = `found the needle at position ${i}`;
-  }
+// function findNeedle(haystack) {
+//   let position = '';
+//   for (let i = 0; i < haystack.length; i++) {
+//     if (haystack[i] === 'needle')
+//       position = `found the needle at position ${i}`;
+//   }
 
-  return position;
+//   return position;
+// }
+
+// console.log(
+//   findNeedle(['hay', 'junk', 'hay', 'hay', 'moreJunk', 'needle', 'randomJunk'])
+// );
+
+// // an easier way to do this:
+// function findNeedle1(haystack) {
+//   return `found the needle at position ${haystack.indexOf('needle')}`;
+// }
+
+// console.log(
+//   findNeedle1(['hay', 'junk', 'hay', 'hay', 'moreJunk', 'ned', 'needle'])
+// );
+
+// Each char of the string has to be repeated once
+// function doubleChar(str) {
+
+//   let sentence = '';
+//   for (character of str) {
+//     sentence +=character+=character;
+    
+//   }
+
+//   return sentence;
+// }
+
+// console.log(doubleChar('123456'));
+
+
+// Return opposite of number
+// Writing '-' returns the opposite of the number
+function opposite(number) {
+  return -number;
 }
 
-console.log(
-  findNeedle(['hay', 'junk', 'hay', 'hay', 'moreJunk', 'needle', 'randomJunk'])
-);
-
-// an easier way to do this:
-function findNeedle1(haystack) {
-  return `found the needle at position ${haystack.indexOf('needle')}`;
-}
-
-console.log(
-  findNeedle1(['hay', 'junk', 'hay', 'hay', 'moreJunk', 'ned', 'needle'])
-);
+console.log(20);
