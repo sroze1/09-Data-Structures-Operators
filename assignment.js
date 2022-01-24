@@ -356,3 +356,47 @@ console.log(smash(['hello', 'yes', 'g']));
 
 // GOOD LUCK 😀
 // */
+
+
+function splitTheBill(x) {
+
+  let arrayOfBill = Object.entries(x);
+  let total = 0;
+  for (let [keys,values] of arrayOfBill) { 
+    total += values;  
+  }
+
+  let equalBill = (total/arrayOfBill.length);
+
+  for (let [keys, values] of arrayOfBill) { 
+    // x becomes the keys and 'D' becomes the ''''values''''
+    // x[A:,B:,C:] = [20,15,10] - 15;
+
+    // All the keys are being looped through, from A to whatever property we have it to
+    // These keys are stored in the 'key' value, which we manipulate by first inserting the object into an array with a different variable name
+    // We can reference the key in our original object as they have the same names as the keys being looped through (because we have the Object into the array)
+
+   
+    // so x[A:] = values(20) - equalBill(15)
+    x[keys] = (values-equalBill);
+    // Number is needed because the minus figures print as strings, and therefore don't fix to 2 decimals as we want
+    if(x[keys] % 1 !=0) { x[keys] = Number(values - equalBill).toFixed(2)};
+    console.log(x[keys]);
+  }
+
+return x;
+}
+
+
+console.log(splitTheBill({A:20, B:15, C:10}));
+
+
+// How to split the bill
+// The bill will equal the total amount of the values passed in by x    totalBill = (x:A + x:B + x:C)
+// To calculate who owes how much, we must calculate how much should be paid first by each person       equalSplit = (totalBill / amount of people) 
+// We can then subtract the values from each property by the amount they should have paid -- to give us how much they are owed or owe      (x:A - equalSplit) = owed/owe
+// x = [...key, (value - equalSplit);
+
+
+
+
