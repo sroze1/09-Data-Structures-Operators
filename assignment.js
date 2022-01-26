@@ -422,7 +422,7 @@ console.log(smash(['hello', 'yes', 'g']));
 //   let sentence = '';
 //   for (character of str) {
 //     sentence +=character+=character;
-    
+
 //   }
 
 //   return sentence;
@@ -430,11 +430,209 @@ console.log(smash(['hello', 'yes', 'g']));
 
 // console.log(doubleChar('123456'));
 
-
 // Return opposite of number
 // Writing '-' returns the opposite of the number
 function opposite(number) {
   return -number;
 }
 
-console.log(20);
+// console.log(20);
+
+// Repeat "S" n times
+// Better way to do this instead of for loops:
+// function repeatStr(n, s) {
+//   return s.repeat(n);
+// }
+
+// function passed(list) {
+//   let sum = 0;
+//   let count = 0;
+
+//   for (let values of list) {
+//     if (values <= 18) {
+//       sum += values;
+//       count++;
+//     }
+//   }
+
+//   return sum > 0 ? Math.round(sum / count) : 'No pass scores registered.';
+// }
+
+// console.log(passed([10,10,10,18,20,20]));
+
+// Driving school series #2
+// function cost(mins) {
+//   let hourCost = 30;
+//   let halfHourCost = 10;
+//   let count= 0;
+
+//   if (mins <= 60) {
+//     return hourCost;
+//   }
+
+//   if (mins > 65) {
+//    return 30 + Math.ceil((mins - 65) / 30) * 10;
+//   }
+// }
+
+// console.log(cost(102));
+
+// Coding meetup series #1
+// function countDevelopers(list) {
+//   return list.filter(x => x.continent == 'Europe' && x.language == 'JavaScript')
+//     .length;
+// }
+const greetDevelopers = list =>
+  list.map(dev => ({
+    ...dev,
+    greeting: `Hi ${dev.firstName}, what do you like the most about ${dev.language}?`,
+  }));
+
+var list1 = [
+  {
+    firstName: 'Sofia',
+    lastName: 'I.',
+    country: 'Argentina',
+    continent: 'Americas',
+    age: 35,
+    language: 'Java',
+  },
+  {
+    firstName: 'Lukas',
+    lastName: 'X.',
+    country: 'Croatia',
+    continent: 'Europe',
+    age: 35,
+    language: 'Python',
+  },
+  {
+    firstName: 'Madison',
+    lastName: 'U.',
+    country: 'United States',
+    continent: 'Americas',
+    age: 32,
+    language: 'Ruby',
+  },
+];
+
+console.log(greetDevelopers(list1));
+
+// { firstName: 'Sofia', lastName: 'I.', country: 'Argentina', continent: 'Americas', age: 35, language: 'Java',
+//     greeting: 'Hi Sofia, what do you like the most about Java?'
+//   },
+
+// check if at least one ruby developer in the list1
+// function isRubyComing(list) {
+//   return list.some(v => v.language === 'Ruby');
+//   // thank you for checking out my kata :)
+// }
+
+// function exclaimWord(word) {
+//   let text = word.toUpperCase();
+//   console.log(text + '!');
+// }
+
+// exclaimWord('woof');
+
+// function getFirstAndLast(array) {
+  
+//   let newArray = [];
+//   newArray.push(array[0]);
+//   newArray.push(array.slice(-1));
+
+// return newArray;
+// }
+
+// console.log(getFirstAndLast(['a', 'b', 'c', 'd', 'e', 'f']));
+
+// function findTotalAge(people) {
+//   if (!people) {
+//     return 0;
+//   }
+
+//   let peopleObject = Object.entries(people);
+//   let sum = 0;
+
+//   for(let [keys,values] of peopleObject) { 
+//     console.log(keys,values.age);
+//     sum+=values.age;
+//   };
+// return sum;
+// }
+
+
+// console.log(findTotalAge([
+//   { name: 'Sam', age: 20 },
+//   { name: 'Anat', age: 30 },
+//   { name: 'Alex', age: 40 },
+// ]));
+// // returns 90
+
+
+// function countChars (str, char) {
+//   let count = 0;
+//   for(let values of str) { 
+//     if(values === char) { 
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+// console.log(countChars('hello world', 'e'));
+// countChars('hello world', 'l') --> 3
+// countChars('hello world', 'z') --> 0
+// countChars('hello world', 'e') --> 1
+
+// function allOscarWinners(films) {
+//   let newArray = {...films};
+
+//   let oscarOrNot = Object.entries(newArray);
+
+//   for(let [keys,values] of oscarOrNot) {
+//     if(!values.wonOscar) return false;
+//   }
+//   return true;
+// }
+
+// console.log(allOscarWinners([
+//   {
+//     title: 'Forrest Gump',
+//     wonOscar: true,
+//   },
+//   {
+//     title: 'Moonlight',
+//     wonOscar: false,
+//   },
+//   {
+//     title: 'No Country for Old Men',
+//     wonOscar: true,
+//   },
+// ]));
+// should return true
+
+// please complete this function...
+
+console.log('JFEHJDJ');
+
+function gatherPets(people) {
+  let newArray = {...people};
+
+  let petsNames = Object.entries(newArray);
+  let sentence = [];
+
+
+  for(let [keys, values] of [...petsNames]) { 
+    sentence.push(...(values.pets));
+  }
+  return sentence;
+};
+
+
+
+console.log(gatherPets(([
+  { name: 'Malcolm', pets: ['Bear', 'Minu'] },
+  { name: 'Caroline', pets: ['Basil', 'Hamish'] },
+])));
+// should return ['Bear', 'Minu', 'Basil', 'Hamish']
+
