@@ -634,5 +634,14 @@ console.log(gatherPets(([
   { name: 'Malcolm', pets: ['Bear', 'Minu'] },
   { name: 'Caroline', pets: ['Basil', 'Hamish'] },
 ])));
+
+
+
+console.log(
+  gatherPets([
+    { name: 'Malcolm', pets: ['Bear', 'Minu'] },
+    { name: 'Caroline', pets: ['Basil', 'Hamish'] },
+  ])
+);
 // should return ['Bear', 'Minu', 'Basil', 'Hamish']
 
