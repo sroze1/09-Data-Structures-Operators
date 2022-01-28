@@ -931,3 +931,20 @@ console.log('NEW=------------------------------ SECTION');
 // When to use objects?
 
 
+// Working with Strings
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+// Get character of a string at a certain position:
+console.log(plane[0]);
+// Get last characet of string
+console.log(plane[plane.length-1]);
+console.log(plane[3]);
+console.log(plane[2]);
+
+
+// We can also get the airline length,
+console.log(airline.length);
+// and even directly 
+console.log('87238'.length);
+
