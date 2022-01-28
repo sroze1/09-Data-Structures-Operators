@@ -180,7 +180,6 @@ const gameEvents = new Map([
 ]);
 
 // 1. Create an array 'events' of the different game events that happened (no duplicates)
-
 const [...array5] = gameEvents;
 
 const uniqueEvents = [];
@@ -188,7 +187,13 @@ for (const [key, value] of array5) {
   uniqueEvents.push(value);
 }
 
+// Another way to do the above is:
+// Firstly create a new set for specifically the gameEvents.values
+// then unpack all of this.
+const events = [...new Set(gameEvents.values())];
+
 console.log(new Set(uniqueEvents));
+console.log(events);
 
 // console.log(new Set(key1));
 // for(const [arr, key] of array5) {
