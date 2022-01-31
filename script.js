@@ -942,9 +942,61 @@ console.log(plane[plane.length-1]);
 console.log(plane[3]);
 console.log(plane[2]);
 
+// We can also directly access the string 
+console.log('B737'[0]);
 
 // We can also get the airline length,
 console.log(airline.length);
 // and even directly 
 console.log('87238'.length);
+
+// We can get the position of which a certain letter is in the array or string
+// Strings are also 0 based
+console.log(airline.indexOf('r'));
+
+// We may also need the last index of r in the string - which would return 10
+console.log(airline.lastIndexOf('r'));
+
+// We can also search for whole words, although this is case sentsitive
+// If we use lower caps P, it will return -1, and not the indexOf Portugal.
+console.log(airline.indexOf('Portugal'));
+
+
+
+// What can we actually do with the indexes? Why are they useful?
+// One good usecase is to extract part of the string using the slice method:
+// This needs indexes are arguments, so it can be useful to first identify the index
+
+// The following will return 'Air Portgual' because basically the parameter passed in
+// Is where the extraction will start.
+// We call this a substring (what is returned)
+// The actual string does not change, 
+//that's because the actual string does no mutate as it's a primitive type
+console.log(airline.slice(4));
+
+// Addding another number to the slice method will count as the 'end' parameter.
+// So this below will begin extraction from 4, and End at 7 
+// Therefore returning 'Air'
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// Define a negative begin parameter
+// Last 2 letters from 'airline'
+console.log(airline.slice(-2));
+
+// This will cut off the last character
+console.log(airline.slice(1,-1));
+
+const checkMiddleSeat = function(seat) { 
+// B and E are middle seats
+// console.log(seat.slice(-1) === 'B' || seat.slice(-1) === 'E' ? 'Middle Seat' : 'Not Middle Seat');
+const s = seat.slice(-1);
+s === 'B' || s === 'E' ? console.log('lol shady - middle seat bro :(') : console.log('Lucky guy g :)');
+}
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
 
