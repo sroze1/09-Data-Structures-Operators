@@ -1000,3 +1000,11 @@ checkMiddleSeat('11B');
 checkMiddleSeat('23C');
 checkMiddleSeat('3E');
 
+const s = seat.slice(-1);
+s === 'B' || s === 'E' ? console.log('lol shady - middle seat bro :(') : console.log('Lucky guy g :)');
+}
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
